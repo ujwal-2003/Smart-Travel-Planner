@@ -1,0 +1,11 @@
+id,name,city,category,rating,cost,duration_hours,latitude,longitude
+1,Phewa Lake,Pokhara,Nature,4.8,0,2,28.2096,83.9596
+2,Sarangkot,Pokhara,Hiking,4.9,300,4,28.2458,83.9483
+3,Davis Falls,Pokhara,Nature,4.6,150,1,28.1937,83.9591
+4,Gupteshwor Cave,Pokhara,Adventure,4.5,100,1.5,28.1932,83.9585
+5,World Peace Pagoda,Pokhara,Religious,4.8,0,3,28.2004,83.9448
+6,Bindhyabasini Temple,Pokhara,Religious,4.7,0,1,28.2272,83.9852
+7,International Mountain Museum,Pokhara,Museum,4.6,500,2,28.1882,83.9824
+8,Mahendra Cave,Pokhara,Adventure,4.4,150,1,28.2524,83.9868
+9,Bat Cave,Pokhara,Adventure,4.3,150,1,28.2535,83.9878
+10,Begnas Lake,Pokhara,Nature,4.7,0,3,28.1719,84.1004
