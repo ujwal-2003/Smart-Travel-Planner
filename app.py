@@ -1,14 +1,15 @@
-import pandas as pd
+from fuzzy import FuzzyTravelPlanner
 
-attractions = pd.read_csv("data/attractions.csv")
-hotels = pd.read_csv("data/hotels.csv")
-restaurants = pd.read_csv("data/restaurants.csv")
+planner = FuzzyTravelPlanner()
 
-print("Attractions")
-print(attractions.head())
+budget = 12000
+days = 5
 
-print("\nHotels")
-print(hotels.head())
+score = planner.evaluate(budget, days)
 
-print("\nRestaurants")
-print(restaurants.head())
+print("=" * 40)
+print("FUZZY TRAVEL SCORE")
+print("=" * 40)
+print(f"Budget : NPR {budget}")
+print(f"Days   : {days}")
+print(f"Score  : {score:.2f}/100")
