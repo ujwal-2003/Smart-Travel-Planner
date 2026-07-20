@@ -1,14 +1,24 @@
-import pandas as pd
+from astar import Node, AStar
 
-attractions = pd.read_csv("data/attractions.csv")
-hotels = pd.read_csv("data/hotels.csv")
-restaurants = pd.read_csv("data/restaurants.csv")
+hotel = Node("Hotel", 28.2095, 83.9602)
 
-print("Attractions")
-print(attractions.head())
+phewa = Node("Phewa Lake", 28.2096, 83.9596)
 
-print("\nHotels")
-print(hotels.head())
+peace = Node("World Peace Pagoda", 28.2004, 83.9448)
 
-print("\nRestaurants")
-print(restaurants.head())
+davis = Node("Davis Falls", 28.1937, 83.9591)
+
+hotel.add_neighbor(phewa, 2)
+
+phewa.add_neighbor(peace, 4)
+
+peace.add_neighbor(davis, 3)
+
+astar = AStar()
+
+route = astar.search(
+    hotel,
+    davis
+)
+
+print(route)
