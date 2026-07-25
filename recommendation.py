@@ -23,6 +23,7 @@ class RecommendationEngine:
 
     def recommend_attractions(
         self,
+        city,
         interests,
         max_results=5
     ):
@@ -33,12 +34,32 @@ class RecommendationEngine:
 
 
 
+        # Filter city first
+
+        attractions = self.attractions[
+            self.attractions["city"]
+            .str.contains(
+                city,
+                case=False,
+                na=False
+            )
+        ].copy()
+
+
+
+        if attractions.empty:
+            return attractions
+
+
+
+        # Match user interests
+
         pattern = "|".join(interests)
 
 
 
-        recommendations = self.attractions[
-            self.attractions["category"]
+        recommendations = attractions[
+            attractions["category"]
             .str.contains(
                 pattern,
                 case=False,
@@ -49,7 +70,9 @@ class RecommendationEngine:
 
 
         if recommendations.empty:
-            return recommendations
+
+            # fallback: return highest rated places
+            recommendations = attractions
 
 
 
@@ -71,14 +94,22 @@ class RecommendationEngine:
 
     def recommend_hotels(
         self,
+        city,
         budget_per_night,
         max_results=5
     ):
 
 
+
+        # Filter city
+
         hotels = self.hotels[
-            self.hotels["price_per_night"]
-            <= budget_per_night
+            self.hotels["city"]
+            .str.contains(
+                city,
+                case=False,
+                na=False
+            )
         ].copy()
 
 
@@ -88,14 +119,39 @@ class RecommendationEngine:
 
 
 
-        hotels = hotels.sort_values(
+        # Filter budget
+
+        affordable_hotels = hotels[
+            hotels["price_per_night"]
+            <= budget_per_night
+        ]
+
+
+
+        if affordable_hotels.empty:
+
+            # If no hotel fits budget,
+            # show cheapest available hotels
+
+            hotels = hotels.sort_values(
+                by="price_per_night"
+            )
+
+
+            return hotels.head(
+                max_results
+            )
+
+
+
+        affordable_hotels = affordable_hotels.sort_values(
             by="rating",
             ascending=False
         )
 
 
 
-        return hotels.head(
+        return affordable_hotels.head(
             max_results
         )
 
@@ -107,14 +163,22 @@ class RecommendationEngine:
 
     def recommend_restaurants(
         self,
+        city,
         budget_per_meal,
         max_results=5
     ):
 
 
+
+        # Filter city
+
         restaurants = self.restaurants[
-            self.restaurants["average_cost"]
-            <= budget_per_meal
+            self.restaurants["city"]
+            .str.contains(
+                city,
+                case=False,
+                na=False
+            )
         ].copy()
 
 
@@ -124,13 +188,40 @@ class RecommendationEngine:
 
 
 
-        restaurants = restaurants.sort_values(
-            by="rating",
-            ascending=False
+        # Filter budget
+
+        affordable_restaurants = restaurants[
+            restaurants["average_cost"]
+            <= budget_per_meal
+        ]
+
+
+
+        if affordable_restaurants.empty:
+
+            # fallback: cheapest restaurants
+
+            restaurants = restaurants.sort_values(
+                by="average_cost"
+            )
+
+
+            return restaurants.head(
+                max_results
+            )
+
+
+
+        affordable_restaurants = (
+            affordable_restaurants
+            .sort_values(
+                by="rating",
+                ascending=False
+            )
         )
 
 
 
-        return restaurants.head(
+        return affordable_restaurants.head(
             max_results
         )
