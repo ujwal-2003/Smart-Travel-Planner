@@ -1,9 +1,106 @@
-id,name,city,cuisine,average_cost,rating
-1,MoMo House,Pokhara,Nepali,500,4.7
-2,Fresh Elements,Pokhara,Continental,1200,4.8
-3,Caffe Concerto,Pokhara,Italian,1500,4.6
-4,OR2K,Pokhara,Vegetarian,900,4.5
-5,Pokhara Thakali Kitchen,Pokhara,Nepali,700,4.7
-6,Godfather's Pizzeria,Pokhara,Italian,1300,4.6
-7,Byanjan Restaurant,Pokhara,Nepali,800,4.5
-8,Lakeside Cafe,Pokhara,Cafe,600,4.4
+name,city,district,average_cost,rating
+Thamel House Restaurant,Kathmandu,Kathmandu,1200,4.7
+Roadhouse Cafe Thamel,Kathmandu,Kathmandu,1500,4.8
+OR2K Restaurant,Kathmandu,Kathmandu,1300,4.6
+Yangling Tibetan Restaurant,Kathmandu,Kathmandu,900,4.7
+Fire And Ice Pizzeria,Kathmandu,Kathmandu,1600,4.8
+Krishnarpan Restaurant,Kathmandu,Kathmandu,2500,4.9
+Third Eye Restaurant,Kathmandu,Kathmandu,1000,4.5
+New Orleans Cafe,Kathmandu,Kathmandu,1200,4.6
+The Ship Restaurant,Kathmandu,Kathmandu,900,4.4
+Himalayan Java Coffee,Kathmandu,Kathmandu,700,4.5
+
+Moondance Restaurant,Pokhara,Kaski,1000,4.7
+Roadhouse Cafe Pokhara,Pokhara,Kaski,1500,4.8
+Fresh Elements Restaurant,Pokhara,Kaski,1200,4.6
+Caffe Concerto,Pokhara,Kaski,1300,4.7
+Lemon Tree Restaurant,Pokhara,Kaski,1100,4.6
+Thakali Kitchen,Pokhara,Kaski,800,4.7
+Byanjan Restaurant,Pokhara,Kaski,1000,4.5
+Fewa Thakali Kitchen,Pokhara,Kaski,700,4.4
+Godfather's Pizzeria,Pokhara,Kaski,1400,4.6
+Pokhara Java Coffee,Pokhara,Kaski,600,4.5
+
+Jungle View Restaurant,Bharatpur,Chitwan,800,4.5
+Sauraha Food Corner,Sauraha,Chitwan,600,4.4
+Greasy Spoon Restaurant,Sauraha,Chitwan,900,4.6
+KC's Restaurant,Sauraha,Chitwan,1000,4.7
+Royal Safari Restaurant,Sauraha,Chitwan,1200,4.6
+Tharu Kitchen,Sauraha,Chitwan,700,4.5
+River Bank Cafe,Sauraha,Chitwan,800,4.4
+
+Buddha Maya Restaurant,Lumbini,Rupandehi,700,4.5
+Lumbini Garden Restaurant,Lumbini,Rupandehi,600,4.4
+Peace Restaurant,Lumbini,Rupandehi,500,4.3
+Maya Devi Cafe,Lumbini,Rupandehi,700,4.5
+Bodhi Tree Restaurant,Lumbini,Rupandehi,800,4.6
+
+Newa Lahana,Bhaktapur,Bhaktapur,900,4.7
+Cafe Nyatapola,Bhaktapur,Bhaktapur,1000,4.6
+Bhaktapur Kitchen,Bhaktapur,Bhaktapur,700,4.5
+The Pottery Cafe,Bhaktapur,Bhaktapur,800,4.5
+Peacock Restaurant,Bhaktapur,Bhaktapur,1200,4.6
+
+The Patio Restaurant,Lalitpur,Lalitpur,1300,4.6
+Cafe Soma,Lalitpur,Lalitpur,900,4.5
+Mokshya Restaurant,Lalitpur,Lalitpur,1200,4.7
+Patan Museum Cafe,Lalitpur,Lalitpur,800,4.5
+Newari Kitchen,Lalitpur,Lalitpur,700,4.6
+
+Cafe Du Mont,Nagarkot,Bhaktapur,1000,4.5
+Nagarkot View Restaurant,Nagarkot,Bhaktapur,1200,4.6
+Sunrise Cafe,Nagarkot,Bhaktapur,700,4.4
+Himalayan Kitchen,Nagarkot,Bhaktapur,900,4.5
+
+Bandipur Cafe,Bandipur,Tanahun,600,4.4
+Samay Baji Restaurant,Bandipur,Tanahun,800,4.6
+Old Inn Restaurant,Bandipur,Tanahun,1000,4.5
+Mountain View Cafe,Bandipur,Tanahun,700,4.4
+
+Marpha Bakery,Marpha,Mustang,600,4.5
+Mustang Thakali Kitchen,Jomsom,Mustang,900,4.7
+Apple Garden Restaurant,Jomsom,Mustang,800,4.6
+Yak Donald Restaurant,Mustang,Mustang,1000,4.5
+Muktinath Restaurant,Muktinath,Mustang,700,4.4
+
+Kanyam Tea House,Ilam,Ilam,500,4.5
+Ilam View Restaurant,Ilam,Ilam,700,4.6
+Green Hill Cafe,Ilam,Ilam,600,4.4
+Tea Garden Restaurant,Ilam,Ilam,800,4.5
+
+Janakpur Mithila Restaurant,Janakpur,Dhanusha,700,4.5
+Sita Restaurant,Janakpur,Dhanusha,600,4.4
+Mithila Bhojanalaya,Janakpur,Dhanusha,500,4.3
+Janaki Food Corner,Janakpur,Dhanusha,700,4.5
+
+Rara View Restaurant,Mugu,Mugu,700,4.4
+Lake Side Cafe,Mugu,Mugu,800,4.5
+
+Gorkha Palace Restaurant,Gorkha,Gorkha,700,4.5
+Manakamana View Restaurant,Gorkha,Gorkha,800,4.4
+Gorkha Garden Cafe,Gorkha,Gorkha,600,4.3
+
+Palpa Durbar Restaurant,Tansen,Palpa,700,4.5
+Rani Mahal Cafe,Tansen,Palpa,600,4.4
+Tansen View Restaurant,Tansen,Palpa,800,4.5
+
+Bardia Jungle Restaurant,Bardiya,Bardiya,800,4.5
+Tharu Community Kitchen,Bardiya,Bardiya,600,4.6
+Tigerland Restaurant,Bardiya,Bardiya,900,4.5
+
+Dhaulagiri Kitchen,Dhulikhel,Kavrepalanchok,1000,4.5
+Dhulikhel Cafe,Dhulikhel,Kavrepalanchok,800,4.4
+Himalayan Horizon Restaurant,Dhulikhel,Kavrepalanchok,1200,4.6
+
+Everest View Restaurant,Namche,Solukhumbu,1500,4.8
+Sherpa Kitchen,Namche,Solukhumbu,900,4.6
+Mountain Lodge Restaurant,Lukla,Solukhumbu,800,4.5
+Everest Base Camp Cafe,Lukla,Solukhumbu,1000,4.6
+
+Manang Yak Restaurant,Manang,Manang,800,4.5
+Mountain View Kitchen,Manang,Manang,700,4.4
+Tilicho Restaurant,Manang,Manang,900,4.5
+
+Pathibhara Food House,Taplejung,Taplejung,600,4.3
+Langtang Mountain Restaurant,Rasuwa,Rasuwa,700,4.4
+Gosainkunda Cafe,Rasuwa,Rasuwa,600,4.3
