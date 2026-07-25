@@ -3,17 +3,19 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 
 
+
 class FuzzyTravelPlanner:
 
 
     def __init__(self):
 
-        # --------------------------------
+
+        # ---------------------------------
         # INPUT VARIABLES
-        # --------------------------------
+        # ---------------------------------
 
         self.budget = ctrl.Antecedent(
-            np.arange(0, 60001, 1000),
+            np.arange(0, 100001, 1000),
             "budget"
         )
 
@@ -24,9 +26,16 @@ class FuzzyTravelPlanner:
         )
 
 
-        # --------------------------------
+        self.destination_cost = ctrl.Antecedent(
+            np.arange(0, 11, 1),
+            "destination_cost"
+        )
+
+
+
+        # ---------------------------------
         # OUTPUT VARIABLE
-        # --------------------------------
+        # ---------------------------------
 
         self.trip_quality = ctrl.Consequent(
             np.arange(0, 101, 1),
@@ -34,32 +43,33 @@ class FuzzyTravelPlanner:
         )
 
 
-        # --------------------------------
-        # Budget Membership Functions
-        # --------------------------------
+
+        # ---------------------------------
+        # Budget Membership
+        # ---------------------------------
 
         self.budget["low"] = fuzz.trimf(
             self.budget.universe,
-            [0, 0, 20000]
+            [0, 0, 30000]
         )
 
 
         self.budget["medium"] = fuzz.trimf(
             self.budget.universe,
-            [15000, 30000, 45000]
+            [20000, 50000, 70000]
         )
 
 
         self.budget["high"] = fuzz.trimf(
             self.budget.universe,
-            [40000, 60000, 60000]
+            [60000, 100000, 100000]
         )
 
 
 
-        # --------------------------------
-        # Duration Membership Functions
-        # --------------------------------
+        # ---------------------------------
+        # Days Membership
+        # ---------------------------------
 
         self.days["short"] = fuzz.trimf(
             self.days.universe,
@@ -80,9 +90,32 @@ class FuzzyTravelPlanner:
 
 
 
-        # --------------------------------
-        # Output Membership Functions
-        # --------------------------------
+        # ---------------------------------
+        # Destination Cost
+        # ---------------------------------
+
+        self.destination_cost["cheap"] = fuzz.trimf(
+            self.destination_cost.universe,
+            [0, 0, 4]
+        )
+
+
+        self.destination_cost["average"] = fuzz.trimf(
+            self.destination_cost.universe,
+            [3, 5, 7]
+        )
+
+
+        self.destination_cost["expensive"] = fuzz.trimf(
+            self.destination_cost.universe,
+            [6, 10, 10]
+        )
+
+
+
+        # ---------------------------------
+        # Output Membership
+        # ---------------------------------
 
         self.trip_quality["poor"] = fuzz.trimf(
             self.trip_quality.universe,
@@ -109,14 +142,29 @@ class FuzzyTravelPlanner:
 
 
 
-        # --------------------------------
+        # ---------------------------------
         # FUZZY RULES
-        # --------------------------------
+        # ---------------------------------
 
         rules = [
 
+            # Low budget
 
-            # Low budget cases
+            ctrl.Rule(
+                self.budget["low"]
+                &
+                self.destination_cost["expensive"],
+                self.trip_quality["poor"]
+            ),
+
+
+            ctrl.Rule(
+                self.budget["low"]
+                &
+                self.destination_cost["cheap"],
+                self.trip_quality["average"]
+            ),
+
 
             ctrl.Rule(
                 self.budget["low"]
@@ -126,80 +174,65 @@ class FuzzyTravelPlanner:
             ),
 
 
+
+            # Medium budget
+
             ctrl.Rule(
-                self.budget["low"]
+                self.budget["medium"]
+                &
+                self.destination_cost["average"],
+                self.trip_quality["good"]
+            ),
+
+
+            ctrl.Rule(
+                self.budget["medium"]
                 &
                 self.days["medium"],
-                self.trip_quality["poor"]
+                self.trip_quality["good"]
+            ),
+
+
+
+            # High budget
+
+            ctrl.Rule(
+                self.budget["high"]
+                &
+                self.destination_cost["expensive"],
+                self.trip_quality["excellent"]
             ),
 
 
             ctrl.Rule(
-                self.budget["low"]
+                self.budget["high"]
                 &
                 self.days["long"],
-                self.trip_quality["poor"]
+                self.trip_quality["excellent"]
             ),
 
 
 
-            # Medium budget cases
+            # Balanced trip
 
             ctrl.Rule(
                 self.budget["medium"]
                 &
                 self.days["short"],
-                self.trip_quality["good"]
-            ),
-
-
-            ctrl.Rule(
-                self.budget["medium"]
-                &
-                self.days["medium"],
-                self.trip_quality["good"]
-            ),
-
-
-            ctrl.Rule(
-                self.budget["medium"]
-                &
-                self.days["long"],
                 self.trip_quality["average"]
             ),
 
 
-
-            # High budget cases
-
             ctrl.Rule(
                 self.budget["high"]
                 &
-                self.days["short"],
+                self.destination_cost["average"],
                 self.trip_quality["excellent"]
-            ),
-
-
-            ctrl.Rule(
-                self.budget["high"]
-                &
-                self.days["medium"],
-                self.trip_quality["excellent"]
-            ),
-
-
-            ctrl.Rule(
-                self.budget["high"]
-                &
-                self.days["long"],
-                self.trip_quality["good"]
-            ),
+            )
 
         ]
 
 
-
-        # Create fuzzy system
 
         system = ctrl.ControlSystem(
             rules
@@ -212,22 +245,80 @@ class FuzzyTravelPlanner:
 
 
 
-    # --------------------------------
-    # Evaluate Trip Quality
-    # --------------------------------
+    # ---------------------------------
+    # Destination Cost Mapping
+    # ---------------------------------
+
+    def get_destination_cost(
+        self,
+        city
+    ):
+
+
+        expensive_places = [
+
+            "Mustang",
+            "Rara",
+            "Everest",
+            "Manang",
+            "Solukhumbu"
+
+        ]
+
+
+        cheap_places = [
+
+            "Lumbini",
+            "Janakpur",
+            "Ilam"
+
+        ]
+
+
+
+        if city in expensive_places:
+
+            return 9
+
+
+        elif city in cheap_places:
+
+            return 3
+
+
+        else:
+
+            return 5
+
+
+
+    # ---------------------------------
+    # Evaluate Trip
+    # ---------------------------------
 
     def evaluate(
         self,
         budget,
-        days
+        days,
+        city
     ):
+
+
+        cost = self.get_destination_cost(
+            city
+        )
+
 
         self.simulation.input["budget"] = budget
 
         self.simulation.input["days"] = days
 
+        self.simulation.input["destination_cost"] = cost
+
+
 
         self.simulation.compute()
+
 
 
         score = self.simulation.output[
