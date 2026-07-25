@@ -1,26 +1,54 @@
 import math
 import heapq
-import pandas as pd
 
+
+
+# =====================================
+# Node Class
+# =====================================
 
 class Node:
 
-    def __init__(self, name, latitude, longitude):
+
+    def __init__(
+        self,
+        name,
+        latitude,
+        longitude
+    ):
 
         self.name = name
-        self.latitude = latitude
-        self.longitude = longitude
+        self.latitude = float(latitude)
+        self.longitude = float(longitude)
+
         self.neighbors = {}
 
-    def add_neighbor(self, node, distance):
+
+
+    def add_neighbor(
+        self,
+        node,
+        distance
+    ):
 
         self.neighbors[node] = distance
 
-    def __lt__(self, other):
+
+
+    def __lt__(
+        self,
+        other
+    ):
 
         return self.name < other.name
 
 
+
+
+
+# =====================================
+# A* Search Algorithm
+# =====================================
 
 class AStar:
 
@@ -31,9 +59,9 @@ class AStar:
 
 
 
-    # -------------------------
-    # Calculate distance
-    # -------------------------
+    # =================================
+    # Haversine Distance (KM)
+    # =================================
 
     def haversine(
         self,
@@ -42,6 +70,7 @@ class AStar:
         lat2,
         lon2
     ):
+
 
         R = 6371
 
@@ -58,227 +87,387 @@ class AStar:
         dlon = lon2 - lon1
 
 
+
         a = (
-            math.sin(dlat/2)**2
+            math.sin(dlat / 2) ** 2
             +
             math.cos(lat1)
             *
             math.cos(lat2)
             *
-            math.sin(dlon/2)**2
+            math.sin(dlon / 2) ** 2
         )
 
 
-        return R * 2 * math.atan2(
+        c = 2 * math.atan2(
             math.sqrt(a),
-            math.sqrt(1-a)
+            math.sqrt(1 - a)
         )
 
 
+        return R * c
 
-    # -------------------------
-    # Heuristic
-    # -------------------------
 
-    def heuristic(self,node1,node2):
+
+
+
+    # =================================
+    # Heuristic Function
+    # =================================
+
+    def heuristic(
+        self,
+        node1,
+        node2
+    ):
+
 
         return self.haversine(
+
             node1.latitude,
             node1.longitude,
+
             node2.latitude,
             node2.longitude
+
         )
 
 
 
-    # -------------------------
-    # Create graph
-    # -------------------------
+
+
+    # =================================
+    # Build Graph
+    # =================================
 
     def build_graph(
         self,
         dataframe,
-        neighbours=3
+        neighbours=4
     ):
 
 
-        for _,row in dataframe.iterrows():
+        self.nodes = {}
 
-            self.nodes[row["name"]] = Node(
+
+
+        # Create nodes
+
+        for _, row in dataframe.iterrows():
+
+
+            node = Node(
+
                 row["name"],
                 row["latitude"],
                 row["longitude"]
+
             )
 
 
+            self.nodes[row["name"]] = node
 
-        node_list=list(
+
+
+
+        node_list = list(
             self.nodes.values()
         )
 
 
 
+        # Connect nearest attractions
+
         for node in node_list:
 
 
-            distances=[]
+            distances = []
+
 
 
             for other in node_list:
 
 
-                if node != other:
+                if node == other:
+                    continue
 
 
-                    distance=self.haversine(
-                        node.latitude,
-                        node.longitude,
-                        other.latitude,
-                        other.longitude
+
+                distance = self.haversine(
+
+                    node.latitude,
+                    node.longitude,
+
+                    other.latitude,
+                    other.longitude
+
+                )
+
+
+                distances.append(
+                    (
+                        distance,
+                        other
                     )
-
-
-                    distances.append(
-                        (
-                            distance,
-                            other
-                        )
-                    )
+                )
 
 
 
             distances.sort(
-                key=lambda x:x[0]
+                key=lambda x: x[0]
             )
 
 
 
-            for distance,other in distances[:neighbours]:
+            for distance, neighbour in distances[:neighbours]:
+
 
                 node.add_neighbor(
-                    other,
+
+                    neighbour,
                     distance
+
                 )
 
 
 
-    # -------------------------
+
+
+    # =================================
     # A* Search
-    # -------------------------
+    # =================================
 
     def search(
         self,
-        start,
-        goal
+        start_name,
+        goal_name
     ):
 
 
-        if start not in self.nodes:
-            return []
-
-        if goal not in self.nodes:
+        if start_name not in self.nodes:
             return []
 
 
-
-        start_node=self.nodes[start]
-        goal_node=self.nodes[goal]
-
+        if goal_name not in self.nodes:
+            return []
 
 
-        queue=[]
+
+        start = self.nodes[start_name]
+
+        goal = self.nodes[goal_name]
+
+
+
+        open_list = []
+
+
 
         heapq.heappush(
-            queue,
+
+            open_list,
+
             (
                 0,
-                start_node
+                start
             )
+
         )
 
 
-        came_from={}
+
+        came_from = {}
 
 
-        g_score={
-            node:float("inf")
+
+        g_score = {
+
+            node: float("inf")
+
             for node in self.nodes.values()
+
         }
 
 
-        g_score[start_node]=0
+
+        g_score[start] = 0
 
 
 
-        while queue:
-
-
-            _,current=heapq.heappop(queue)
+        visited = set()
 
 
 
-            if current==goal_node:
+        while open_list:
 
 
-                path=[]
+            current = heapq.heappop(
+                open_list
+            )[1]
 
 
-                while current in came_from:
 
-                    path.append(
-                        current.name
-                    )
-
-                    current=came_from[current]
+            if current in visited:
+                continue
 
 
-                path.append(
-                    start_node.name
+
+            visited.add(current)
+
+
+
+            # Destination reached
+
+            if current == goal:
+
+
+                return self.reconstruct_path(
+
+                    came_from,
+                    current
+
                 )
 
 
-                return path[::-1]
+
+            for neighbour, distance in current.neighbors.items():
 
 
 
-            for neighbour,distance in current.neighbors.items():
+                tentative_g = (
 
-
-                new_cost=(
                     g_score[current]
                     +
                     distance
+
                 )
 
 
 
-                if new_cost < g_score[neighbour]:
+                if tentative_g < g_score[neighbour]:
 
 
-                    came_from[neighbour]=current
-
-                    g_score[neighbour]=new_cost
+                    came_from[neighbour] = current
 
 
 
-                    priority=(
-                        new_cost
+                    g_score[neighbour] = tentative_g
+
+
+
+                    f_score = (
+
+                        tentative_g
                         +
                         self.heuristic(
                             neighbour,
-                            goal_node
+                            goal
                         )
+
                     )
 
 
 
                     heapq.heappush(
-                        queue,
+
+                        open_list,
+
                         (
-                            priority,
+                            f_score,
                             neighbour
                         )
+
                     )
 
 
+
         return []
+
+
+
+
+
+    # =================================
+    # Reconstruct Path
+    # =================================
+
+    def reconstruct_path(
+        self,
+        came_from,
+        current
+    ):
+
+
+        path = [
+
+            current.name
+
+        ]
+
+
+
+        while current in came_from:
+
+
+            current = came_from[current]
+
+
+            path.append(
+
+                current.name
+
+            )
+
+
+
+        path.reverse()
+
+
+
+        return path
+
+
+
+
+
+    # =================================
+    # Calculate Route Distance
+    # =================================
+
+    def route_distance(
+        self,
+        route
+    ):
+
+
+        total_distance = 0
+
+
+
+        for i in range(
+            len(route)-1
+        ):
+
+
+            current = self.nodes[route[i]]
+
+            next_node = self.nodes[route[i+1]]
+
+
+
+            total_distance += self.haversine(
+
+                current.latitude,
+                current.longitude,
+
+                next_node.latitude,
+                next_node.longitude
+
+            )
+
+
+
+        return round(
+            total_distance,
+            2
+        )
