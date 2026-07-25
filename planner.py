@@ -12,7 +12,9 @@ class SmartTravelPlanner:
     def __init__(self):
 
 
+        # -----------------------------
         # Load datasets
+        # -----------------------------
 
         self.attractions = pd.read_csv(
             "data/attractions.csv"
@@ -30,12 +32,16 @@ class SmartTravelPlanner:
 
 
 
-        # AI modules
+        # -----------------------------
+        # AI Components
+        # -----------------------------
 
         self.recommendation = RecommendationEngine(
+
             self.attractions,
             self.hotels,
             self.restaurants
+
         )
 
 
@@ -46,20 +52,13 @@ class SmartTravelPlanner:
 
 
 
-        # Build route graph
-
-        self.astar.build_graph(
-            self.attractions
-        )
-
-
-
-    # ----------------------------------
-    # Generate Complete Travel Plan
-    # ----------------------------------
+    # =================================
+    # Generate Travel Plan
+    # =================================
 
     def generate_plan(
         self,
+        city,
         interests,
         hotel_budget,
         food_budget,
@@ -69,51 +68,96 @@ class SmartTravelPlanner:
 
 
 
-        # -------------------------
+        # -----------------------------
+        # Filter city attractions
+        # -----------------------------
+
+        city_attractions = self.attractions[
+
+            self.attractions["city"]
+            .str.contains(
+                city,
+                case=False,
+                na=False
+            )
+
+        ].copy()
+
+
+
+        # -----------------------------
+        # Build A* Graph
+        # -----------------------------
+
+        if not city_attractions.empty:
+
+            self.astar.build_graph(
+                city_attractions
+            )
+
+
+
+        # -----------------------------
         # Fuzzy Evaluation
-        # -------------------------
+        # -----------------------------
 
         score = self.fuzzy.evaluate(
+
             total_budget,
-            days
+            days,
+            city
+
         )
 
 
 
-        # -------------------------
-        # Recommendations
-        # -------------------------
+        # -----------------------------
+        # Recommendation System
+        # -----------------------------
 
         attractions = (
             self.recommendation
             .recommend_attractions(
+
+                city,
                 interests
+
             )
         )
+
 
 
         hotels = (
             self.recommendation
             .recommend_hotels(
+
+                city,
                 hotel_budget
+
             )
         )
+
 
 
         restaurants = (
             self.recommendation
             .recommend_restaurants(
+
+                city,
                 food_budget
+
             )
         )
 
 
 
-        # -------------------------
+        # -----------------------------
         # A* Route Generation
-        # -------------------------
+        # -----------------------------
 
         route = []
+
+        distance = 0
 
 
 
@@ -127,13 +171,30 @@ class SmartTravelPlanner:
 
 
             route = self.astar.search(
+
                 start,
                 goal
+
             )
 
 
 
+            if route:
+
+                distance = self.astar.route_distance(
+                    route
+                )
+
+
+
+        # -----------------------------
+        # Return Complete Plan
+        # -----------------------------
+
         return {
+
+
+            "city": city,
 
 
             "score": score,
@@ -146,6 +207,9 @@ class SmartTravelPlanner:
 
 
             "route": route,
+
+
+            "distance": distance,
 
 
             "attractions": attractions,
