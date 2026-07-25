@@ -1,10 +1,12 @@
 import streamlit as st
+
 from planner import SmartTravelPlanner
 
 
-# -----------------------------
-# Page Configuration
-# -----------------------------
+
+# --------------------------
+# Page Setup
+# --------------------------
 
 st.set_page_config(
     page_title="Smart Travel Planner",
@@ -13,40 +15,51 @@ st.set_page_config(
 )
 
 
-# Initialize Planner
+
 @st.cache_resource
 def load_planner():
+
     return SmartTravelPlanner()
+
 
 
 planner = load_planner()
 
 
-# -----------------------------
+
+# --------------------------
 # Header
-# -----------------------------
+# --------------------------
 
-st.title("🌍 Smart Travel Planner")
-
-st.write(
-    """
-    Plan your perfect trip using AI-powered:
-    - 🤖 Recommendation System
-    - 🧠 Fuzzy Logic Evaluation
-    - 🗺 A* Route Planning
-    """
+st.title(
+    "🌍 Smart Travel Planner"
 )
 
 
-# -----------------------------
-# Sidebar Inputs
-# -----------------------------
+st.write(
+"""
+AI-powered travel planning system using:
 
-st.sidebar.header("✈️ Trip Preferences")
+🤖 Recommendation System  
+🧠 Fuzzy Logic Evaluation  
+🗺 A* Route Optimization
+"""
+)
+
+
+
+# --------------------------
+# Sidebar
+# --------------------------
+
+st.sidebar.header(
+    "✈️ Trip Preferences"
+)
+
 
 
 interests = st.sidebar.multiselect(
-    "Choose your interests",
+    "Select Interests",
     [
         "Nature",
         "Hiking",
@@ -58,188 +71,196 @@ interests = st.sidebar.multiselect(
 )
 
 
+
 hotel_budget = st.sidebar.slider(
-    "🏨 Hotel Budget per Night (NPR)",
-    min_value=1000,
-    max_value=10000,
-    value=3500,
-    step=500
+    "🏨 Hotel Budget / Night",
+    1000,
+    10000,
+    3500,
+    500
 )
+
 
 
 food_budget = st.sidebar.slider(
-    "🍽 Food Budget per Day (NPR)",
-    min_value=200,
-    max_value=3000,
-    value=1000,
-    step=100
+    "🍴 Food Budget / Day",
+    200,
+    3000,
+    1000,
+    100
 )
+
 
 
 total_budget = st.sidebar.slider(
-    "💰 Total Trip Budget (NPR)",
-    min_value=5000,
-    max_value=50000,
-    value=20000,
-    step=1000
+    "💰 Total Budget",
+    5000,
+    50000,
+    20000,
+    1000
 )
+
 
 
 days = st.sidebar.slider(
     "📅 Trip Duration",
-    min_value=1,
-    max_value=7,
-    value=3
+    1,
+    14,
+    3
 )
+
 
 
 generate = st.sidebar.button(
-    "🚀 Generate Travel Plan"
+    "🚀 Generate Plan"
 )
 
 
 
-# -----------------------------
-# Generate Plan
-# -----------------------------
+# --------------------------
+# Generate
+# --------------------------
 
 if generate:
 
+
     if not interests:
+
         st.warning(
-            "Please select at least one interest."
+            "Please select interests"
         )
+
 
     else:
 
-        with st.spinner("Creating your AI travel plan..."):
+
+        with st.spinner(
+            "Creating AI travel plan..."
+        ):
+
 
             result = planner.generate_plan(
-                interests=interests,
-                hotel_budget=hotel_budget,
-                food_budget=food_budget,
-                total_budget=total_budget,
-                days=days
+
+                interests,
+
+                hotel_budget,
+
+                food_budget,
+
+                total_budget,
+
+                days
             )
+
 
 
         st.success(
-            "Your travel plan has been generated!"
-        )
-
-
-        # -----------------------------
-        # Score Card
-        # -----------------------------
-
-        st.subheader("🤖 AI Trip Suitability Score")
-
-
-        col1, col2, col3 = st.columns(3)
-
-
-        with col1:
-            st.metric(
-                "Suitability Score",
-                f"{result['score']:.2f}/100"
-            )
-
-
-        with col2:
-            st.metric(
-                "Trip Duration",
-                f"{result['days']} Days"
-            )
-
-
-        with col3:
-            st.metric(
-                "Budget",
-                f"NPR {result['budget']}"
-            )
-
-
-
-        # -----------------------------
-        # Route
-        # -----------------------------
-
-        st.subheader("🗺 Suggested Travel Route")
-
-
-        if result["route"]:
-
-            route_text = " ➡️ ".join(
-                result["route"]
-            )
-
-            st.info(route_text)
-
-        else:
-
-            st.warning(
-                "Route could not be generated."
-            )
-
-
-
-        # -----------------------------
-        # Attractions
-        # -----------------------------
-
-        st.subheader("🏞 Recommended Attractions")
-
-
-        st.dataframe(
-            result["attractions"],
-            use_container_width=True
+            "Travel plan generated!"
         )
 
 
 
-        # -----------------------------
-        # Hotels
-        # -----------------------------
+        # Score Cards
 
-        st.subheader("🏨 Recommended Hotels")
+        c1,c2,c3 = st.columns(3)
 
 
-        st.dataframe(
-            result["hotels"],
-            use_container_width=True
+
+        c1.metric(
+            "AI Score",
+            f"{result['score']}/100"
+        )
+
+
+        c2.metric(
+            "Days",
+            result["days"]
+        )
+
+
+        c3.metric(
+            "Budget",
+            f"NPR {result['budget']}"
         )
 
 
 
-        # -----------------------------
-        # Restaurants
-        # -----------------------------
+        # Tabs
 
-        st.subheader("🍴 Recommended Restaurants")
-
-
-        st.dataframe(
-            result["restaurants"],
-            use_container_width=True
+        tab1,tab2,tab3,tab4 = st.tabs(
+            [
+                "🗺 Route",
+                "🏞 Attractions",
+                "🏨 Hotels",
+                "🍴 Restaurants"
+            ]
         )
 
 
-        # -----------------------------
-        # Download Option
-        # -----------------------------
 
-        st.subheader("📥 Export Plan")
+        with tab1:
+
+            if result["route"]:
+
+                st.success(
+                    " ➡️ ".join(
+                        result["route"]
+                    )
+                )
+
+            else:
+
+                st.warning(
+                    "No route found"
+                )
 
 
-        csv = result["attractions"].to_csv(
-            index=False
+
+        with tab2:
+
+            st.dataframe(
+                result["attractions"],
+                use_container_width=True
+            )
+
+
+
+        with tab3:
+
+            st.dataframe(
+                result["hotels"],
+                use_container_width=True
+            )
+
+
+
+        with tab4:
+
+            st.dataframe(
+                result["restaurants"],
+                use_container_width=True
+            )
+
+
+
+        # Export
+
+        csv = (
+            result["attractions"]
+            .to_csv(
+                index=False
+            )
         )
 
 
         st.download_button(
-            label="Download Attractions CSV",
-            data=csv,
-            file_name="travel_plan.csv",
-            mime="text/csv"
-        )
 
+            "📥 Download Plan",
+
+            csv,
+
+            "travel_plan.csv",
+
+            "text/csv"
+
+        )
