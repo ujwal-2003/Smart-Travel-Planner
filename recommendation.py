@@ -3,7 +3,6 @@ import pandas as pd
 
 class RecommendationEngine:
 
-
     def __init__(
         self,
         attractions_df,
@@ -11,15 +10,67 @@ class RecommendationEngine:
         restaurants_df
     ):
 
-        self.attractions = attractions_df
-        self.hotels = hotels_df
-        self.restaurants = restaurants_df
+        self.attractions = attractions_df.copy()
+        self.hotels = hotels_df.copy()
+        self.restaurants = restaurants_df.copy()
 
+        # ----------------------------
+        # Clean Attraction Dataset
+        # ----------------------------
 
+        self.attractions["city"] = (
+            self.attractions["city"]
+            .astype(str)
+            .str.strip()
+        )
 
-    # ---------------------------------
+        self.attractions["category"] = (
+            self.attractions["category"]
+            .astype(str)
+            .str.strip()
+        )
+
+        self.attractions["name"] = (
+            self.attractions["name"]
+            .astype(str)
+            .str.strip()
+        )
+
+        # ----------------------------
+        # Clean Hotel Dataset
+        # ----------------------------
+
+        self.hotels["city"] = (
+            self.hotels["city"]
+            .astype(str)
+            .str.strip()
+        )
+
+        self.hotels["name"] = (
+            self.hotels["name"]
+            .astype(str)
+            .str.strip()
+        )
+
+        # ----------------------------
+        # Clean Restaurant Dataset
+        # ----------------------------
+
+        self.restaurants["city"] = (
+            self.restaurants["city"]
+            .astype(str)
+            .str.strip()
+        )
+
+        self.restaurants["name"] = (
+            self.restaurants["name"]
+            .astype(str)
+            .str.strip()
+        )
+
+    # =====================================================
     # Attraction Recommendation
-    # ---------------------------------
+    # =====================================================
 
     def recommend_attractions(
         self,
@@ -28,69 +79,86 @@ class RecommendationEngine:
         max_results=5
     ):
 
-
-        if not interests:
-            return pd.DataFrame()
-
-
-
-        # Filter city first
+        city = city.strip().lower()
 
         attractions = self.attractions[
             self.attractions["city"]
-            .str.contains(
-                city,
-                case=False,
-                na=False
-            )
+            .str.lower()
+            == city
         ].copy()
-
-
 
         if attractions.empty:
-            return attractions
+            return pd.DataFrame()
 
+        # -----------------------------------------
+        # If no interests selected
+        # -----------------------------------------
 
+        if not interests:
 
-        # Match user interests
+            return (
+                attractions
+                .sort_values(
+                    by="rating",
+                    ascending=False
+                )
+                .head(max_results)
+                .reset_index(drop=True)
+            )
 
-        pattern = "|".join(interests)
+        # -----------------------------------------
+        # Match interests
+        # -----------------------------------------
 
+        interests = [
+            i.lower().strip()
+            for i in interests
+        ]
 
+        attractions["match_score"] = attractions[
+            "category"
+        ].apply(
+            lambda x:
+            sum(
+                interest in str(x).lower()
+                for interest in interests
+            )
+        )
 
         recommendations = attractions[
-            attractions["category"]
-            .str.contains(
-                pattern,
-                case=False,
-                na=False
-            )
+            attractions["match_score"] > 0
         ].copy()
 
-
+        # -----------------------------------------
+        # Fallback if no interest match
+        # -----------------------------------------
 
         if recommendations.empty:
 
-            # fallback: return highest rated places
-            recommendations = attractions
-
-
+            recommendations = attractions.copy()
 
         recommendations = recommendations.sort_values(
-            by="rating",
-            ascending=False
+            by=[
+                "match_score",
+                "rating"
+            ],
+            ascending=[
+                False,
+                False
+            ]
         )
 
+        recommendations = recommendations.drop_duplicates(
+            subset=["name"]
+        )
 
         return recommendations.head(
             max_results
-        )
+        ).reset_index(drop=True)
 
-
-
-    # ---------------------------------
+    # =====================================================
     # Hotel Recommendation
-    # ---------------------------------
+    # =====================================================
 
     def recommend_hotels(
         self,
@@ -99,67 +167,52 @@ class RecommendationEngine:
         max_results=5
     ):
 
-
-
-        # Filter city
+        city = city.strip().lower()
 
         hotels = self.hotels[
             self.hotels["city"]
-            .str.contains(
-                city,
-                case=False,
-                na=False
-            )
+            .str.lower()
+            == city
         ].copy()
 
-
-
         if hotels.empty:
-            return hotels
+            return pd.DataFrame()
 
+        hotels = hotels.sort_values(
+            by="price_per_night"
+        )
 
-
-        # Filter budget
-
-        affordable_hotels = hotels[
+        affordable = hotels[
             hotels["price_per_night"]
             <= budget_per_night
-        ]
+        ].copy()
 
+        if affordable.empty:
 
+            affordable = hotels.head(max_results)
 
-        if affordable_hotels.empty:
-
-            # If no hotel fits budget,
-            # show cheapest available hotels
-
-            hotels = hotels.sort_values(
-                by="price_per_night"
-            )
-
-
-            return hotels.head(
-                max_results
-            )
-
-
-
-        affordable_hotels = affordable_hotels.sort_values(
-            by="rating",
-            ascending=False
+        affordable = affordable.sort_values(
+            by=[
+                "rating",
+                "price_per_night"
+            ],
+            ascending=[
+                False,
+                True
+            ]
         )
 
+        affordable = affordable.drop_duplicates(
+            subset=["name"]
+        )
 
-
-        return affordable_hotels.head(
+        return affordable.head(
             max_results
-        )
+        ).reset_index(drop=True)
 
-
-
-    # ---------------------------------
+    # =====================================================
     # Restaurant Recommendation
-    # ---------------------------------
+    # =====================================================
 
     def recommend_restaurants(
         self,
@@ -168,60 +221,47 @@ class RecommendationEngine:
         max_results=5
     ):
 
-
-
-        # Filter city
+        city = city.strip().lower()
 
         restaurants = self.restaurants[
             self.restaurants["city"]
-            .str.contains(
-                city,
-                case=False,
-                na=False
-            )
+            .str.lower()
+            == city
         ].copy()
 
-
-
         if restaurants.empty:
-            return restaurants
+            return pd.DataFrame()
 
+        restaurants = restaurants.sort_values(
+            by="average_cost"
+        )
 
-
-        # Filter budget
-
-        affordable_restaurants = restaurants[
+        affordable = restaurants[
             restaurants["average_cost"]
             <= budget_per_meal
-        ]
+        ].copy()
 
+        if affordable.empty:
 
+            affordable = restaurants.head(max_results)
 
-        if affordable_restaurants.empty:
-
-            # fallback: cheapest restaurants
-
-            restaurants = restaurants.sort_values(
-                by="average_cost"
-            )
-
-
-            return restaurants.head(
-                max_results
-            )
-
-
-
-        affordable_restaurants = (
-            affordable_restaurants
-            .sort_values(
-                by="rating",
-                ascending=False
-            )
+        affordable = affordable.sort_values(
+            by=[
+                "rating",
+                "average_cost"
+            ],
+            ascending=[
+                False,
+                True
+            ]
         )
 
+        affordable = affordable.drop_duplicates(
+            subset=["name"]
+        )
 
-
-        return affordable_restaurants.head(
+        return affordable.head(
             max_results
-        )
+        ).reset_index(drop=True)
+
+
