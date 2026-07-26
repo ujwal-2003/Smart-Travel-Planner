@@ -1,9 +1,105 @@
-id,name,city,cuisine,average_cost,rating
-1,MoMo House,Pokhara,Nepali,500,4.7
-2,Fresh Elements,Pokhara,Continental,1200,4.8
-3,Caffe Concerto,Pokhara,Italian,1500,4.6
-4,OR2K,Pokhara,Vegetarian,900,4.5
-5,Pokhara Thakali Kitchen,Pokhara,Nepali,700,4.7
-6,Godfather's Pizzeria,Pokhara,Italian,1300,4.6
-7,Byanjan Restaurant,Pokhara,Nepali,800,4.5
-8,Lakeside Cafe,Pokhara,Cafe,600,4.4
+
+
+id,name,city,cuisine,rating,average_cost,latitude,longitude
+1,OR2K,Kathmandu,Nepali,4.8,1200,27.7172,85.3123
+2,Fire and Ice Pizzeria,Kathmandu,Italian,4.7,1800,27.7135,85.3145
+3,Thakali Bhanchha Ghar,Kathmandu,Thakali,4.8,900,27.7115,85.3120
+4,Roadhouse Cafe,Kathmandu,Italian,4.6,1700,27.7165,85.3110
+5,Yangling Tibetan Restaurant,Kathmandu,Tibetan,4.7,800,27.7155,85.3130
+6,Himalayan Java,Kathmandu,Cafe,4.6,700,27.7148,85.3152
+7,Momo Hut,Kathmandu,Nepali,4.5,500,27.7125,85.3135
+8,Krishnarpan Restaurant,Kathmandu,Nepali,4.9,3500,27.7180,85.3465
+9,Kaiser Cafe,Kathmandu,Cafe,4.5,900,27.7138,85.3170
+10,Thamel House,Kathmandu,Nepali,4.7,1300,27.7175,85.3128
+11,Moondance Restaurant,Pokhara,Continental,4.8,1400,28.2095,83.9595
+12,Caffe Concerto,Pokhara,Cafe,4.7,1200,28.2090,83.9605
+13,Fresh Elements,Pokhara,Healthy,4.8,1000,28.2088,83.9590
+14,Byanjan Restaurant,Pokhara,Nepali,4.6,900,28.2085,83.9588
+15,Godfathers Pizzeria,Pokhara,Italian,4.7,1500,28.2098,83.9602
+16,AM/PM Cafe,Pokhara,Cafe,4.5,700,28.2105,83.9598
+17,Pokhara Thakali Kitchen,Pokhara,Thakali,4.8,950,28.2100,83.9585
+18,Asian Tea House,Pokhara,Asian,4.7,1300,28.2092,83.9593
+19,Lake View Restaurant,Pokhara,Nepali,4.6,1100,28.2097,83.9587
+20,Busy Bee Cafe,Pokhara,Cafe,4.6,800,28.2102,83.9608
+21,Riverside Restaurant,Bharatpur,Nepali,4.7,900,27.5810,84.4930
+22,Jungle Safari Restaurant,Bharatpur,Nepali,4.6,1100,27.5820,84.4925
+23,Sauraha Cafe,Bharatpur,Cafe,4.5,700,27.5815,84.4940
+24,Tharu Kitchen,Bharatpur,Tharu,4.8,1000,27.5805,84.4935
+25,Rapti Riverside Grill,Bharatpur,BBQ,4.7,1400,27.5825,84.4945
+26,Lumbini Garden Restaurant,Lumbini,Nepali,4.7,800,27.4833,83.2760
+27,Peace Flame Cafe,Lumbini,Cafe,4.6,600,27.4800,83.2750
+28,Buddha Bhojan Griha,Lumbini,Nepali,4.8,900,27.4705,83.2765
+29,Monastery Restaurant,Lumbini,Asian,4.5,1000,27.4815,83.2780
+30,Lotus Cafe,Lumbini,Cafe,4.6,700,27.4820,83.2775
+31,Newa Kitchen,Bhaktapur,Newari,4.9,1200,27.6710,85.4298
+32,Nyatapola Restaurant,Bhaktapur,Nepali,4.7,900,27.6720,85.4290
+33,Pottery Cafe,Bhaktapur,Cafe,4.6,700,27.6690,85.4300
+34,Peacock Restaurant,Bhaktapur,Newari,4.8,1100,27.6725,85.4285
+35,Heritage Dining,Bhaktapur,Nepali,4.7,1000,27.6715,85.4295
+36,Honacha Restaurant,Lalitpur,Newari,4.9,900,27.6738,85.3250
+37,Patan Museum Cafe,Lalitpur,Cafe,4.7,800,27.6730,85.3258
+38,Golden Temple Restaurant,Lalitpur,Nepali,4.8,1000,27.6747,85.3255
+39,Mangal Bazaar Cafe,Lalitpur,Cafe,4.6,700,27.6740,85.3248
+40,The Village Cafe,Lalitpur,Continental,4.7,1300,27.6735,85.3252
+41,Yak Restaurant,Mustang,Tibetan,4.8,1200,28.7820,83.7220
+42,Apple Garden Restaurant,Mustang,Nepali,4.7,900,28.7510,83.6900
+43,Lo Manthang Kitchen,Mustang,Tibetan,4.9,1400,29.1900,83.9600
+44,Himalayan Taste,Mustang,Nepali,4.6,1000,28.8175,83.8715
+45,Marpha Apple Cafe,Mustang,Cafe,4.7,800,28.7515,83.6910
+46,Kanyam Tea Cafe,Ilam,Cafe,4.8,700,26.9100,87.9300
+47,Ilam Organic Restaurant,Ilam,Nepali,4.7,900,26.9105,87.9285
+48,Tea Garden Restaurant,Ilam,Nepali,4.6,850,26.9110,87.9295
+49,Antu View Restaurant,Ilam,Nepali,4.5,800,26.8800,87.9500
+50,Green Leaf Cafe,Ilam,Cafe,4.7,650,26.9095,87.9290
+51,Old House Cafe,Bandipur,Cafe,4.7,700,27.9380,84.4070
+52,Bandipur Organic Kitchen,Bandipur,Nepali,4.8,900,27.9390,84.4080
+53,Hilltop Restaurant,Bandipur,Continental,4.6,1200,27.9400,84.4090
+54,Newari Bhojan Ghar,Bandipur,Newari,4.5,850,27.9385,84.4065
+55,Bandipur View Cafe,Bandipur,Cafe,4.7,650,27.9395,84.4075
+56,Janaki Bhojanalaya,Janakpur,Nepali,4.8,800,26.7288,85.9250
+57,Mithila Kitchen,Janakpur,Maithili,4.9,900,26.7295,85.9258
+58,Ram Chowk Restaurant,Janakpur,Nepali,4.6,700,26.7300,85.9230
+59,Sita Family Restaurant,Janakpur,Indian,4.5,850,26.7290,85.9240
+60,Mithila Cafe,Janakpur,Cafe,4.7,600,26.7285,85.9255
+61,Hotel View Restaurant,Nagarkot,Nepali,4.8,1200,27.7150,85.5200
+62,Sunrise Cafe,Nagarkot,Cafe,4.7,700,27.7160,85.5210
+63,Himalayan Dining,Nagarkot,Continental,4.6,1300,27.7155,85.5195
+64,Nagarkot Family Restaurant,Nagarkot,Nepali,4.5,900,27.7145,85.5205
+65,Everest View Cafe,Nagarkot,Cafe,4.7,750,27.7165,85.5215
+66,Dhulikhel Lodge Restaurant,Dhulikhel,Nepali,4.8,1000,27.6220,85.5420
+67,Himalayan Horizon Restaurant,Dhulikhel,Continental,4.7,1300,27.6215,85.5415
+68,Namo Buddha Cafe,Dhulikhel,Cafe,4.6,700,27.5805,85.5905
+69,Mountain View Restaurant,Dhulikhel,Nepali,4.5,850,27.6230,85.5430
+70,Peace Garden Cafe,Dhulikhel,Cafe,4.7,650,27.6225,85.5425
+71,Gorkha Kitchen,Gorkha,Nepali,4.8,900,28.0000,84.6330
+72,Manakamana Restaurant,Gorkha,Nepali,4.7,950,27.9500,84.8700
+73,Gorkha Palace Cafe,Gorkha,Cafe,4.5,700,28.0010,84.6340
+74,Liglig Family Restaurant,Gorkha,Nepali,4.6,800,27.9850,84.6100
+75,Heritage Dining,Gorkha,Newari,4.7,1000,28.0005,84.6335
+76,Rara Lake Restaurant,Mugu,Nepali,4.8,1000,29.5319,82.0845
+77,Murma View Cafe,Mugu,Cafe,4.7,700,29.5400,82.0900
+78,Karnali Kitchen,Mugu,Nepali,4.6,850,29.2750,82.1830
+79,Rara Eco Restaurant,Mugu,Continental,4.5,1200,29.5325,82.0850
+80,Himalayan Dining,Mugu,Tibetan,4.7,950,29.5310,82.0840
+81,Bardia Jungle Restaurant,Bardiya,Nepali,4.8,1200,28.4500,81.4500
+82,Wildlife Cafe,Bardiya,Cafe,4.6,700,28.4485,81.4485
+83,Karnali Riverside Restaurant,Bardiya,Nepali,4.7,950,28.4000,81.3500
+84,Thakurdwara Kitchen,Bardiya,Tharu,4.8,900,28.3900,81.3300
+85,Safari Dining,Bardiya,BBQ,4.5,1400,28.4510,81.4510
+86,Khaptad Eco Restaurant,Khaptad,Nepali,4.7,900,29.3500,81.1000
+87,Khaptad View Cafe,Khaptad,Cafe,4.6,650,29.3490,81.0990
+88,Baba Ashram Kitchen,Khaptad,Nepali,4.5,700,29.3450,81.0950
+89,Hilltop Restaurant,Khaptad,Continental,4.6,1100,29.3510,81.1010
+90,Nature Dining,Khaptad,Nepali,4.7,850,29.3505,81.1005
+91,Namche Bakery,Solukhumbu,Cafe,4.8,900,27.8069,86.7147
+92,Everest Steak House,Solukhumbu,Continental,4.9,1800,27.8075,86.7155
+93,Tengboche Tea House,Solukhumbu,Tibetan,4.7,850,27.8360,86.7620
+94,Gokyo Lake Restaurant,Solukhumbu,Nepali,4.8,1000,27.9570,86.6900
+95,Sherpa Family Kitchen,Solukhumbu,Sherpa,4.9,1200,27.8080,86.7160
+96,Tilicho Restaurant,Manang,Nepali,4.8,950,28.6667,84.0167
+97,Langtang Cafe,Rasuwa,Cafe,4.7,700,28.2000,85.5500
+98,Gosainkunda Kitchen,Rasuwa,Nepali,4.8,900,28.0833,85.4167
+99,Pathibhara Bhojanalaya,Taplejung,Nepali,4.6,800,27.4280,87.7340
+100,Srinagar Hill Restaurant,Tansen,Nepali,4.8,900,27.8670,83.5460
+
+

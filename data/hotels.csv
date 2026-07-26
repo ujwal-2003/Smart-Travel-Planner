@@ -1,9 +1,103 @@
-id,name,city,price_per_night,rating,latitude,longitude
-1,Hotel Lake View,Pokhara,1800,4.5,28.2095,83.9602
-2,Hotel Barahi,Pokhara,6000,4.7,28.2091,83.9589
-3,Waterfront Resort,Pokhara,7500,4.8,28.2144,83.9582
-4,Hotel Middle Path,Pokhara,3200,4.6,28.2087,83.9585
-5,Pokhara Choice Inn,Pokhara,2500,4.4,28.2098,83.9593
-6,Hotel White Pearl,Pokhara,4000,4.5,28.2089,83.9591
-7,Lake Breeze Hotel,Pokhara,2200,4.3,28.2103,83.9605
-8,Hotel Peace Plaza,Pokhara,3500,4.6,28.2078,83.9588
+
+id,name,city,star,rating,price_per_night,address,latitude,longitude
+1,Hotel Yak & Yeti,Kathmandu,5,4.8,12000,Durbar Marg,27.7105,85.3175
+2,Hyatt Regency Kathmandu,Kathmandu,5,4.9,15000,Boudha Road,27.7218,85.3615
+3,Hotel Shanker,Kathmandu,4,4.7,9000,Lazimpat,27.7210,85.3200
+4,Hotel Woodland,Kathmandu,4,4.6,7500,Durbarmarg,27.7095,85.3178
+5,Kathmandu Guest House,Kathmandu,3,4.5,4500,Thamel,27.7172,85.3125
+6,Hotel Encounter Nepal,Kathmandu,3,4.4,3500,Thamel,27.7168,85.3118
+7,Hotel Moonlight,Kathmandu,4,4.6,6500,Thamel,27.7180,85.3110
+8,Hotel Marshyangdi,Kathmandu,3,4.3,4000,Thamel,27.7175,85.3130
+9,Oasis Kathmandu Hotel,Kathmandu,3,4.4,3800,Thamel,27.7165,85.3128
+10,Hotel Buddha,Kathmandu,3,4.2,3200,Thamel,27.7178,85.3135
+11,Fish Tail Lodge,Pokhara,5,4.9,14000,Lakeside,28.2095,83.9585
+12,Temple Tree Resort,Pokhara,5,4.8,12000,Lakeside,28.2105,83.9600
+13,Hotel Barahi,Pokhara,4,4.7,8500,Lakeside,28.2085,83.9592
+14,Mount Kailash Resort,Pokhara,4,4.6,8000,Lakeside,28.2098,83.9605
+15,Waterfront Resort,Pokhara,4,4.6,7800,Sedi,28.2240,83.9650
+16,Hotel Middle Path,Pokhara,3,4.5,4500,Lakeside,28.2080,83.9588
+17,Hotel Lake Star,Pokhara,3,4.4,4200,Lakeside,28.2088,83.9598
+18,Hotel White Pearl,Pokhara,3,4.3,3900,Lakeside,28.2092,83.9608
+19,Hotel Crown Himalayas,Pokhara,4,4.6,7000,Lakeside,28.2102,83.9612
+20,Hotel Splendid View,Pokhara,3,4.4,3600,Lakeside,28.2087,83.9595
+21,Hotel Seven Star,Bharatpur,4,4.6,7000,Bharatpur,27.6750,84.4300
+22,Green Park Resort,Bharatpur,4,4.7,8000,Sauraha,27.5805,84.4935
+23,Jungle Safari Lodge,Bharatpur,3,4.5,5000,Sauraha,27.5815,84.4945
+24,Rhino Lodge,Bharatpur,3,4.4,4200,Sauraha,27.5820,84.4938
+25,Hotel Parkside,Bharatpur,3,4.3,3800,Sauraha,27.5818,84.4928
+26,Hotel Nirvana,Lumbini,4,4.7,6500,Lumbini Garden Area,27.4835,83.2765
+27,Buddha Maya Garden Hotel,Lumbini,4,4.6,6000,Lumbini,27.4828,83.2772
+28,Lumbini Garden Lodge,Lumbini,3,4.4,3500,Lumbini,27.4818,83.2768
+29,Hotel Peace Palace,Lumbini,3,4.3,3200,Lumbini,27.4805,83.2755
+30,Sacred Garden Resort,Lumbini,4,4.5,5500,Lumbini,27.4830,83.2780
+31,Hotel Heritage,Bhaktapur,4,4.7,6500,Durbar Square,27.6715,85.4305
+32,Peacock Guest House,Bhaktapur,3,4.5,3500,Taumadhi Square,27.6720,85.4295
+33,Hotel Vintage Home,Bhaktapur,3,4.4,3200,Bhaktapur,27.6705,85.4290
+34,Hotel Bhadgaon,Bhaktapur,3,4.3,3000,Bhaktapur,27.6718,85.4308
+35,Nyatapola Guest House,Bhaktapur,3,4.4,3400,Bhaktapur,27.6722,85.4292
+36,Hotel Himalaya,Lalitpur,4,4.7,8500,Kupondole,27.6850,85.3165
+37,Vivanta Kathmandu,Lalitpur,5,4.8,13000,Jawalakhel,27.6730,85.3155
+38,Summit Hotel,Lalitpur,4,4.6,7000,Sanepa,27.6810,85.3130
+39,Budget Backpackers Inn,Lalitpur,3,4.3,3200,Patan,27.6745,85.3250
+40,Patan Home Stay,Lalitpur,3,4.4,3500,Patan Durbar Area,27.6738,85.3255
+41,Old Inn Bandipur,Bandipur,4,4.8,7000,Bandipur Bazaar,27.9382,84.4075
+42,Bandipur Mountain Resort,Bandipur,4,4.7,6500,Bandipur,27.9390,84.4080
+43,Gaun Ghar Hotel,Bandipur,3,4.5,4200,Bandipur,27.9385,84.4065
+44,Hotel Depche,Bandipur,3,4.4,3800,Bandipur,27.9378,84.4068
+45,Bandipur Village Inn,Bandipur,3,4.3,3600,Bandipur,27.9388,84.4078
+46,Hotel Welcome,Janakpur,4,4.6,6000,Janakpur,26.7295,85.9255
+47,Sita Palace Hotel,Janakpur,4,4.5,5500,Janaki Chowk,26.7285,85.9248
+48,Hotel City Star,Janakpur,3,4.3,3500,Janakpur,26.7298,85.9262
+49,Hotel Anurag,Janakpur,3,4.2,3200,Janakpur,26.7302,85.9245
+50,Janaki Lodge,Janakpur,3,4.4,3400,Janakpur,26.7290,85.9250
+51,Hotel Grand Shambala,Mustang,4,4.7,7500,Jomsom,28.7820,83.7220
+52,Hotel Majesty,Mustang,3,4.5,4500,Jomsom,28.7815,83.7215
+53,Lo Mustang Himalayan Resort,Mustang,4,4.8,8500,Lo Manthang,29.1905,83.9605
+54,Hotel Yak,Mustang,3,4.4,4000,Marpha,28.7512,83.6905
+55,Marpha Apple Lodge,Mustang,3,4.6,4200,Marpha,28.7518,83.6910
+56,Hotel Hill Tower,Ilam,4,4.7,6000,Ilam Bazaar,26.9105,87.9285
+57,Ilam Tea Resort,Ilam,4,4.8,7000,Kanyam,26.9100,87.9300
+58,Hotel Red Panda,Ilam,3,4.4,3500,Ilam Bazaar,26.9112,87.9295
+59,Hotel Green View,Ilam,3,4.3,3200,Antu,26.8805,87.9505
+60,Kanyam Eco Lodge,Ilam,3,4.5,4000,Kanyam,26.9095,87.9290
+61,Hotel Country Villa,Nagarkot,4,4.8,9000,Nagarkot,27.7150,85.5200
+62,Club Himalaya,Nagarkot,5,4.8,14000,Nagarkot,27.7165,85.5210
+63,Hotel Mystic Mountain,Nagarkot,4,4.7,10000,Nagarkot,27.7145,85.5195
+64,Peaceful Cottage,Nagarkot,3,4.4,4200,Nagarkot,27.7158,85.5185
+65,Nagarkot Sunshine Hotel,Nagarkot,3,4.5,4500,Nagarkot,27.7160,85.5205
+66,Dhulikhel Mountain Resort,Dhulikhel,4,4.7,8000,Dhulikhel,27.6220,85.5420
+67,The Dwarika's Resort,Dhulikhel,5,4.9,18000,Dhulikhel,27.6205,85.5415
+68,Hotel Sarathi,Dhulikhel,3,4.3,3500,Dhulikhel,27.6215,85.5428
+69,Mirabel Resort,Dhulikhel,4,4.6,7000,Dhulikhel,27.6230,85.5432
+70,Dhulikhel Lodge Resort,Dhulikhel,4,4.5,6500,Dhulikhel,27.6228,85.5418
+71,Gorkha Garden Hotel,Gorkha,4,4.7,6500,Gorkha Bazaar,28.0000,84.6330
+72,Hotel Gorkha Palace,Gorkha,3,4.5,4000,Gorkha,28.0010,84.6340
+73,Gorkha Inn,Gorkha,3,4.3,3500,Gorkha,28.0008,84.6328
+74,Manakamana View Resort,Gorkha,4,4.6,7000,Manakamana,27.9505,84.8705
+75,Liglig Eco Lodge,Gorkha,3,4.4,3800,Ligligkot,27.9850,84.6100
+76,Rara Lake Resort,Mugu,4,4.8,8500,Rara,29.5319,82.0845
+77,Rara View Hotel,Mugu,3,4.6,5000,Rara,29.5308,82.0838
+78,Murma Eco Lodge,Mugu,3,4.5,4500,Murma,29.5400,82.0900
+79,Hotel Karnali Paradise,Mugu,3,4.4,4200,Gamgadhi,29.2750,82.1830
+80,Rara Himalayan Lodge,Mugu,4,4.7,7800,Rara,29.5325,82.0850
+81,Bardia Jungle Resort,Bardiya,4,4.8,9500,Thakurdwara,28.3900,81.3300
+82,Rhino Lodge Bardiya,Bardiya,3,4.6,6000,Thakurdwara,28.3910,81.3310
+83,Forest Hideaway,Bardiya,3,4.5,5200,Bardiya,28.4000,81.3500
+84,Karnali Riverside Resort,Bardiya,4,4.7,8200,Karnali River,28.4015,81.3515
+85,Wildlife Adventure Lodge,Bardiya,3,4.4,4800,Thakurdwara,28.3920,81.3320
+86,Khaptad Eco Resort,Khaptad,4,4.7,7000,Khaptad,29.3500,81.1000
+87,Khaptad Hill Lodge,Khaptad,3,4.5,4500,Khaptad,29.3490,81.0990
+88,Baba Ashram Guest House,Khaptad,3,4.4,3500,Khaptad,29.3450,81.0950
+89,Khaptad Nature Resort,Khaptad,4,4.6,6500,Khaptad,29.3510,81.1010
+90,Everest Summit Lodge,Solukhumbu,4,4.9,10000,Namche,27.8069,86.7147
+91,Hotel Namche,Solukhumbu,3,4.7,7000,Namche,27.8075,86.7155
+92,Tengboche Mountain Lodge,Solukhumbu,3,4.6,6500,Tengboche,27.8360,86.7620
+93,Gokyo Lake Lodge,Solukhumbu,4,4.8,9000,Gokyo,27.9570,86.6900
+94,Everest View Hotel,Solukhumbu,5,4.9,15000,Namche,27.8080,86.7160
+95,Tilicho Resort,Manang,4,4.8,8000,Manang,28.6667,84.0167
+96,Manang Valley Hotel,Manang,3,4.6,5500,Manang,28.6675,84.0175
+97,Langtang Eco Lodge,Rasuwa,3,4.6,5000,Langtang,28.2000,85.5500
+98,Gosainkunda Mountain Lodge,Rasuwa,4,4.7,6500,Dhunche,28.0833,85.4167
+99,Pathibhara Hotel,Taplejung,3,4.5,4500,Taplejung,27.4280,87.7340
+100,Srinagar Hill Resort,Tansen,4,4.7,7000,Tansen,27.8670,83.5460
+

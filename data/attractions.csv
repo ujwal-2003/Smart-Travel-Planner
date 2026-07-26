@@ -1,11 +1,101 @@
 id,name,city,category,rating,cost,duration_hours,latitude,longitude
-1,Phewa Lake,Pokhara,Nature,4.8,0,2,28.2096,83.9596
-2,Sarangkot,Pokhara,Hiking,4.9,300,4,28.2458,83.9483
-3,Davis Falls,Pokhara,Nature,4.6,150,1,28.1937,83.9591
-4,Gupteshwor Cave,Pokhara,Adventure,4.5,100,1.5,28.1932,83.9585
-5,World Peace Pagoda,Pokhara,Religious,4.8,0,3,28.2004,83.9448
-6,Bindhyabasini Temple,Pokhara,Religious,4.7,0,1,28.2272,83.9852
-7,International Mountain Museum,Pokhara,Museum,4.6,500,2,28.1882,83.9824
-8,Mahendra Cave,Pokhara,Adventure,4.4,150,1,28.2524,83.9868
-9,Bat Cave,Pokhara,Adventure,4.3,150,1,28.2535,83.9878
-10,Begnas Lake,Pokhara,Nature,4.7,0,3,28.1719,84.1004
+1,Pashupatinath Temple,Kathmandu,Religious,4.9,1000,2,27.7100,85.3480
+2,Swayambhunath Stupa,Kathmandu,Religious,4.8,200,2,27.7148,85.2905
+3,Boudhanath Stupa,Kathmandu,Culture,4.8,400,2,27.7215,85.3620
+4,Kathmandu Durbar Square,Kathmandu,Culture,4.7,1000,3,27.7048,85.3076
+5,Garden of Dreams,Kathmandu,Nature,4.6,400,2,27.7138,85.3172
+6,Narayanhiti Palace Museum,Kathmandu,Museum,4.5,500,2,27.7145,85.3177
+7,Kopan Monastery,Kathmandu,Religious,4.7,0,2,27.7420,85.3600
+8,Chandragiri Hills,Kathmandu,Adventure,4.8,900,5,27.6833,85.2085
+9,Budhanilkantha Temple,Kathmandu,Religious,4.7,0,2,27.7940,85.3630
+10,Shivapuri National Park,Kathmandu,Hiking,4.8,500,6,27.8200,85.3900
+11,Thamel,Kathmandu,Culture,4.7,0,3,27.7172,85.3123
+12,Asan Bazaar,Kathmandu,Food,4.5,0,2,27.7075,85.3110
+13,Hanuman Dhoka,Kathmandu,Culture,4.7,1000,2,27.7045,85.3074
+14,White Monastery,Kathmandu,Religious,4.6,0,2,27.7410,85.2800
+15,Taudaha Lake,Kathmandu,Nature,4.5,0,2,27.6550,85.2860
+16,Phewa Lake,Pokhara,Nature,4.9,0,2,28.2096,83.9596
+17,Sarangkot,Pokhara,Hiking,4.9,300,4,28.2458,83.9483
+18,Davis Falls,Pokhara,Nature,4.6,150,1,28.1937,83.9591
+19,Gupteshwor Cave,Pokhara,Adventure,4.6,100,2,28.1932,83.9585
+20,World Peace Pagoda,Pokhara,Religious,4.8,0,3,28.2004,83.9448
+21,Bindhyabasini Temple,Pokhara,Religious,4.7,0,1,28.2272,83.9852
+22,International Mountain Museum,Pokhara,Museum,4.6,500,2,28.1882,83.9824
+23,Mahendra Cave,Pokhara,Adventure,4.5,150,1.5,28.2524,83.9868
+24,Bat Cave,Pokhara,Adventure,4.4,150,1.5,28.2535,83.9878
+25,Begnas Lake,Pokhara,Nature,4.8,0,3,28.1719,84.1004
+26,Seti River Gorge,Pokhara,Nature,4.5,0,2,28.2200,83.9900
+27,Pumdikot Shiva Statue,Pokhara,Religious,4.8,0,2,28.1885,83.9515
+28,Rupa Lake,Pokhara,Nature,4.5,0,3,28.1560,84.1120
+29,Chitwan National Park,Bharatpur,Adventure,4.9,2000,6,27.5291,84.3542
+30,Sauraha,Bharatpur,Nature,4.8,500,3,27.5810,84.4930
+31,Bishazari Lake,Bharatpur,Nature,4.6,200,2,27.6000,84.4200
+32,Devghat Dham,Bharatpur,Religious,4.7,0,2,27.7000,84.4300
+33,Elephant Breeding Center,Bharatpur,Adventure,4.6,300,2,27.5815,84.4950
+34,Kasara Museum,Bharatpur,Museum,4.4,100,1.5,27.5600,84.3400
+35,Rapti River Safari,Bharatpur,Adventure,4.8,1200,3,27.5840,84.4960
+36,Maya Devi Temple,Lumbini,Religious,4.9,200,2,27.4698,83.2759
+37,Lumbini Garden,Lumbini,Nature,4.8,100,3,27.4833,83.2760
+38,Ashoka Pillar,Lumbini,Culture,4.8,100,1.5,27.4700,83.2760
+39,World Peace Flame,Lumbini,Religious,4.6,0,1,27.4800,83.2750
+40,German Monastery,Lumbini,Culture,4.6,100,2,27.4820,83.2790
+41,Thai Monastery,Lumbini,Religious,4.7,100,2,27.4810,83.2780
+42,Bhaktapur Durbar Square,Bhaktapur,Culture,4.9,1500,3,27.6710,85.4298
+43,Nyatapola Temple,Bhaktapur,Religious,4.8,0,2,27.6720,85.4290
+44,55 Window Palace,Bhaktapur,Culture,4.7,500,2,27.6725,85.4280
+45,Pottery Square,Bhaktapur,Culture,4.6,0,2,27.6690,85.4300
+46,Dattatreya Temple,Bhaktapur,Religious,4.6,0,2,27.6735,85.4335
+47,Patan Durbar Square,Lalitpur,Culture,4.9,1000,3,27.6738,85.3250
+48,Golden Temple,Lalitpur,Religious,4.8,0,2,27.6747,85.3255
+49,Patan Museum,Lalitpur,Museum,4.7,250,2,27.6730,85.3258
+50,Godavari Botanical Garden,Lalitpur,Nature,4.7,200,4,27.5920,85.3950
+51,Muktinath Temple,Mustang,Religious,4.9,500,3,28.8175,83.8715
+52,Jomsom,Mustang,Adventure,4.7,0,3,28.7820,83.7220
+53,Kagbeni,Mustang,Culture,4.7,0,2,28.8390,83.7820
+54,Marpha Village,Mustang,Culture,4.8,0,3,28.7510,83.6900
+55,Lo Manthang,Mustang,Adventure,4.9,1000,5,29.1900,83.9600
+56,Dhumba Lake,Mustang,Nature,4.6,0,2,28.7790,83.7300
+57,Kanyam Tea Garden,Ilam,Nature,4.8,0,3,26.9100,87.9300
+58,Antu Danda,Ilam,Hiking,4.7,0,4,26.8800,87.9500
+59,Mai Pokhari,Ilam,Nature,4.7,200,2,26.9700,87.9300
+60,Sandakpur Viewpoint,Ilam,Adventure,4.8,500,6,27.1000,88.0000
+61,Ilam Bazaar,Ilam,Culture,4.5,0,2,26.9105,87.9285
+62,Bandipur Bazaar,Bandipur,Culture,4.8,0,3,27.9380,84.4070
+63,Siddha Cave,Bandipur,Adventure,4.7,300,3,27.9500,84.4200
+64,Thani Mai Temple,Bandipur,Religious,4.6,0,2,27.9400,84.4000
+65,Tundikhel Viewpoint,Bandipur,Nature,4.5,0,2,27.9390,84.4100
+66,Janaki Temple,Janakpur,Religious,4.9,100,2,26.7288,85.9250
+67,Ram Mandir,Janakpur,Religious,4.7,0,1.5,26.7300,85.9230
+68,Dhanushadham,Janakpur,Culture,4.6,100,3,26.8000,85.9500
+69,Ganga Sagar Pond,Janakpur,Nature,4.5,0,1,26.7295,85.9265
+70,Nagarkot View Tower,Nagarkot,Hiking,4.8,0,3,27.7150,85.5200
+71,Nagarkot Sunrise Point,Nagarkot,Nature,4.9,0,2,27.7200,85.5150
+72,Nagarkot Nature Trail,Nagarkot,Hiking,4.6,0,4,27.7180,85.5180
+73,Dhulikhel View Point,Dhulikhel,Nature,4.8,0,2,27.6220,85.5420
+74,Namo Buddha,Dhulikhel,Religious,4.9,0,3,27.5800,85.5900
+75,Kali Temple,Dhulikhel,Religious,4.5,0,1.5,27.6260,85.5400
+76,Gorkha Durbar,Gorkha,Culture,4.8,300,3,28.0000,84.6330
+77,Manakamana Temple,Gorkha,Religious,4.9,700,4,27.9500,84.8700
+78,Gorkha Museum,Gorkha,Museum,4.5,100,2,28.0015,84.6335
+79,Ligligkot,Gorkha,Hiking,4.6,0,5,27.9850,84.6100
+80,Rara Lake,Mugu,Nature,5.0,0,5,29.5319,82.0845
+81,Rara National Park,Mugu,Adventure,4.8,500,6,29.5000,82.1000
+82,Murma View Point,Mugu,Hiking,4.7,0,4,29.5400,82.0900
+83,Bardia National Park,Bardiya,Adventure,4.9,2000,6,28.4500,81.4500
+84,Karnali River,Bardiya,Nature,4.7,500,3,28.4000,81.3500
+85,Thakurdwara Temple,Bardiya,Religious,4.5,0,2,28.3900,81.3300
+86,Khaptad National Park,Khaptad,Nature,4.9,500,6,29.3500,81.1000
+87,Khaptad Baba Ashram,Khaptad,Religious,4.7,0,2,29.3450,81.0950
+88,Everest Base Camp,Solukhumbu,Adventure,5.0,5000,48,28.0026,86.8528
+89,Namche Bazaar,Solukhumbu,Culture,4.9,0,5,27.8069,86.7147
+90,Tengboche Monastery,Solukhumbu,Religious,4.8,0,3,27.8360,86.7620
+91,Gokyo Lake,Solukhumbu,Nature,4.9,0,8,27.9570,86.6900
+92,Tilicho Lake,Manang,Adventure,4.9,1000,8,28.7000,84.3900
+93,Manang Village,Manang,Culture,4.8,0,3,28.6667,84.0167
+94,Ice Lake,Manang,Hiking,4.8,0,7,28.6800,84.0300
+95,Gosainkunda Lake,Rasuwa,Nature,4.9,500,7,28.0833,85.4167
+96,Langtang Valley,Rasuwa,Adventure,4.9,500,24,28.2000,85.5500
+97,Pathibhara Temple,Taplejung,Religious,4.9,200,4,27.4280,87.7340
+98,Tansen Durbar,Tansen,Culture,4.7,100,2,27.8670,83.5460
+99,Rani Mahal,Tansen,Culture,4.8,200,3,27.8500,83.5400
+100,Srinagar Hill,Tansen,Nature,4.7,0,3,27.8800,83.5600
