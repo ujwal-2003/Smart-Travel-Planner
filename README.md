@@ -1,40 +1,90 @@
-# Smart-Travel-Planner
-A Smart Travel Planner is an AI system that creates a personalized travel itinerary instead of simply listing destinations. It combines several AI techniques to make decisions based on the user's preferences and constraints.
+# 🌍 Smart Travel Planner
 
-## About the Project
+An AI-powered travel planning system that generates personalized travel itineraries for destinations across Nepal. Instead of simply listing tourist attractions, the planner recommends places based on user interests, budget, travel duration, and destination while optimizing the travel route and evaluating the quality of the trip using multiple Artificial Intelligence techniques.
 
-Planning a trip can be exciting, but it can also be stressful. People often spend a lot of time searching for places to visit, comparing hotels, estimating costs, and deciding the best route. This project aims to simplify that process by creating a **Smart Travel Planner** that generates a personalized travel plan based on the user's preferences.
-The application uses Artificial Intelligence techniques to recommend attractions, suggest hotels and restaurants, estimate the trip budget, and create an optimized itinerary. Instead of simply showing popular places, the system considers factors such as the user's interests, budget, and travel duration to make more meaningful recommendations.
-This project was developed as part of the Artificial Intelligence coursework for the **BSc (Hons) Computer Science with Artificial Intelligence** program.
+This project was developed as part of the **BSc (Hons) Computer Science with Artificial Intelligence** coursework.
 
 ---
 
-## Features
+# ✨ Features
 
-* Personalized attraction recommendations
-* Hotel and restaurant suggestions
-* Budget estimation
-* Day-wise travel itinerary
-* Route optimization between attractions
-* Interactive and easy-to-use interface
-* Explainable recommendations
+- 🤖 AI-powered attraction recommendations using **TF-IDF + Cosine Similarity**
+- 🧠 Trip evaluation using a **custom Mamdani Fuzzy Logic** engine
+- 🗺 Route optimization using **A\* Search** with **2-opt route refinement**
+- 📅 Automatic **day-wise itinerary generation**
+- 💰 Detailed budget estimation and breakdown
+- 🏨 Hotel recommendations based on budget and ratings
+- 🍴 Restaurant recommendations based on food budget
+- 📍 Interactive map displaying recommended attractions
+- 📥 Export itinerary as TXT
+- 📄 Export attraction list as CSV
+- 📊 Debug information for generated routes
+
+---
+
+# 🧠 AI Techniques Used
+
+The Smart Travel Planner combines multiple AI techniques to provide intelligent travel recommendations.
+
+## Recommendation System
+
+The recommendation engine suggests attractions, hotels, and restaurants based on the user's preferences.
+
+### Attractions
+- TF-IDF Vectorization
+- Cosine Similarity
+- Rating-based ranking
+- Interest matching
+
+### Hotels & Restaurants
+Recommendations are generated using a weighted composite score based on:
+
+- Budget fitness
+- User budget
+- Ratings
 
 ---
 
-## AI Techniques Used
-This project combines multiple AI concepts instead of relying on a single algorithm.
+## Fuzzy Logic
 
-### Recommendation System
-Suggests attractions, hotels, and restaurants based on the user's interests, destination, and budget.
+A custom **Mamdani-style fuzzy inference system** evaluates the overall quality of the planned trip.
 
-### Fuzzy Logic
-People don't usually think in exact numbers like "Budget = NPR 20,000". Instead, they think in terms such as **low**, **medium**, or **high** budget. Fuzzy logic helps the system make decisions in a way that is closer to human reasoning.
+Unlike traditional rule-based systems, fuzzy logic handles uncertain concepts such as:
 
-### A* Search Algorithm
-Once the attractions have been selected, the A* Search algorithm is used to find an efficient route between destinations, helping reduce travel time.
+- Low / Medium / High Budget
+- Short / Medium / Long Trip
+- Cheap / Average / Expensive Destination
+- Weak / Moderate / Strong Interest Match
+
+The fuzzy engine produces:
+
+- Trip Score (0–100)
+- Quality Label
+    - Excellent
+    - Good
+    - Average
+    - Poor
+
+Unlike previous versions, this implementation does **not require Scikit-Fuzzy**, as all membership functions and centroid defuzzification are implemented manually using NumPy.
 
 ---
-## Project Structure
+
+## A* Search Route Planning
+
+The travel route is optimized using an A* graph.
+
+Features include:
+
+- Haversine distance calculation
+- Nearest-neighbour graph construction
+- 2-opt local search optimization
+- Estimated route distance
+- Estimated travel time
+- Multi-stop itinerary generation
+
+---
+
+# 📁 Project Structure
 
 ```text
 Smart-Travel-Planner/
@@ -43,112 +93,292 @@ Smart-Travel-Planner/
 │   ├── attractions.csv
 │   ├── hotels.csv
 │   ├── restaurants.csv
-│   └── weather.csv
 │
+├── app.py
+├── planner.py
 ├── recommendation.py
 ├── fuzzy.py
 ├── astar.py
-├── planner.py
-├── app.py
+├── clean_data.py
+├── evaluation.py
+├── visualization.py
 ├── requirements.txt
 └── README.md
 ```
 
 ---
-## Dataset
 
-The project uses a custom dataset containing information about tourist attractions, hotels, and restaurants.
-Each attraction includes information such as:
+# 📊 Dataset
 
-* Name
-* Category
-* Rating
-* Entry Cost
-* Estimated Visit Duration
-* Latitude and Longitude
+The project uses custom datasets containing tourist information for cities across Nepal.
 
-The hotel dataset contains prices and ratings, while the restaurant dataset includes cuisine type, average price, and ratings.
+## Attractions Dataset
+
+Each attraction includes:
+
+- Name
+- City
+- Category
+- Rating
+- Entry Cost
+- Visit Duration
+- Latitude
+- Longitude
+
+## Hotels Dataset
+
+Includes:
+
+- Name
+- City
+- Star Rating
+- Hotel Rating
+- Price per Night
+- Address
+- Coordinates
+
+## Restaurants Dataset
+
+Includes:
+
+- Name
+- City
+- Cuisine
+- Rating
+- Average Cost
+
 ---
 
-## How It Works
-1. The user enters travel preferences such as destination, budget, number of days, and interests.
-2. The recommendation engine filters attractions that best match those preferences.
-3. Fuzzy logic evaluates factors like budget and suitability instead of relying on strict rules.
-4. The A* Search algorithm calculates an efficient travel route.
-5. The system generates a personalized itinerary, including recommended places, estimated expenses, and travel order.
+# ⚙️ How the System Works
+
+1. The user selects:
+   - Destination
+   - Interests
+   - Hotel budget
+   - Food budget
+   - Total budget
+   - Trip duration
+
+2. The Recommendation Engine finds attractions using TF-IDF similarity.
+
+3. Hotels and restaurants are ranked using budget and rating.
+
+4. The fuzzy engine evaluates the trip quality.
+
+5. The A* planner builds an optimized travel route.
+
+6. Attractions are automatically distributed into a day-wise itinerary.
+
+7. A complete travel plan is displayed including:
+
+   - Trip Score
+   - Budget Breakdown
+   - Optimized Route
+   - Interactive Map
+   - Recommended Attractions
+   - Hotels
+   - Restaurants
+
+8. Users can export:
+
+   - Attractions (CSV)
+   - Travel itinerary (TXT)
 
 ---
 
-## Technologies Used
-* Python
-* Streamlit
-* Pandas
-* NumPy
-* NetworkX
-* Scikit-Fuzzy
-* Matplotlib
+# 💻 Technologies Used
+
+- Python
+- Streamlit
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
 
 ---
 
-## Installation
-Clone the repository:
+# 🚀 Installation
+
+Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/Smart-Travel-Planner.git
 ```
 
-Move into the project folder:
+Move into the project folder
+
 ```bash
 cd Smart-Travel-Planner
 ```
 
-Install the required packages:
+Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application:
+Run the application
+
 ```bash
 streamlit run app.py
 ```
 
 ---
-## Example Input
 
-* **Destination:** Pokhara
-* **Budget:** NPR 20,000
-* **Duration:** 3 Days
-* **Interests:** Nature, Hiking
-* **Hotel Preference:** Budget
+# 🖥 Example Usage
+
+### Input
+
+Destination
+
+```
+Pokhara
+```
+
+Interests
+
+```
+Nature
+Adventure
+Hiking
+```
+
+Hotel Budget
+
+```
+NPR 5,000
+```
+
+Food Budget
+
+```
+NPR 1,000
+```
+
+Total Budget
+
+```
+NPR 30,000
+```
+
+Duration
+
+```
+5 Days
+```
 
 ---
-## Expected Output
-The application will generate:
 
-* Recommended attractions
-* Suggested hotel
-* Restaurant recommendations
-* Optimized travel route
-* Estimated trip cost
-* A day-by-day travel itinerary
+# 📤 Example Output
 
----
-## Future Improvements
+The planner generates:
 
-Some features that could be added in future versions include:
-
-* Live weather information
-* Google Maps integration
-* Real-time traffic updates
-* Online hotel booking
-* More personalized recommendations using user history
-* Voice-based trip planning
+- AI Trip Score
+- Trip Quality Label
+- Interest Match Score
+- Budget Breakdown
+- Optimized Route
+- Estimated Travel Distance
+- Day-wise Itinerary
+- Interactive Attraction Map
+- Recommended Attractions
+- Recommended Hotels
+- Recommended Restaurants
+- Downloadable CSV
+- Downloadable TXT itinerary
 
 ---
 
-## Author
+# 📈 Evaluation
+
+The project includes a dedicated evaluation module.
+
+It evaluates:
+
+### Recommendation Engine
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion Matrix
+
+### Fuzzy Evaluation Engine
+
+- MAE
+- MSE
+- RMSE
+- R² Score
+
+### Hotel & Restaurant Recommendation
+
+- MAE
+- MSE
+- RMSE
+- R² Score
+
+Generated outputs include:
+
+- Evaluation Report
+- Confusion Matrix
+- Regression Scatter Plots
+
+---
+
+# 📊 Data Visualization
+
+The visualization module generates:
+
+- Attractions per City
+- Attraction Category Distribution
+- Rating Distribution
+- Cost vs Rating
+- Hotel Price Distribution
+- Cuisine Distribution
+- Geographic Scatter Maps
+- Correlation Heatmaps
+
+---
+
+# 🧹 Data Cleaning
+
+A preprocessing module is included to improve dataset quality.
+
+It performs:
+
+- Duplicate removal
+- Missing value handling
+- Numeric conversion
+- Coordinate validation
+- Rating validation
+- Price validation
+- Standardization of text fields
+
+---
+
+# 🔮 Future Improvements
+
+Potential future enhancements include:
+
+- Google Maps API integration
+- Live weather information
+- Real-time traffic updates
+- Hotel booking integration
+- User accounts and trip history
+- Collaborative filtering recommendations
+- Voice-assisted trip planning
+- Mobile application deployment
+
+---
+
+# 👨‍💻 Author
+
 **Ujwal Acharya**
+
 BSc (Hons) Computer Science with Artificial Intelligence
 
 ---
-## License
-This project is created for educational purposes as part of university coursework.
+
+# 📄 License
+
+This project was developed for educational purposes as part of university coursework.
