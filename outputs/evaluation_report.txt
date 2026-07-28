@@ -1,0 +1,43 @@
+======================================================================
+MODEL EVALUATION REPORT — Smart Travel Planner
+======================================================================
+
+[1] Recommendation Engine — classification metrics
+    (predicted = attraction recommended in top-5 for a category query,
+     actual = attraction's true category matches the query)
+    Confusion matrix [[TN FP] [FN TP]]:
+[[125 175]
+ [  0 100]]
+    Accuracy : 0.5625
+    Precision: 0.3636
+    Recall   : 1.0000
+    F1 score : 0.5333
+    Samples  : 400 (positives: 100)
+
+[2] Fuzzy Trip-Quality Evaluator — regression metrics
+    (predicted = fuzzy engine score, reference = independent weighted-formula benchmark)
+    MAE : 8.948
+    MSE : 114.591
+    RMSE: 10.705
+    R^2 : 0.4306
+    Samples: 300
+
+[3] Hotel Recommender — regression metrics
+    (predicted = composite_score, true = normalized rating)
+    MAE : 0.2558
+    MSE : 0.0851
+    RMSE: 0.2917
+    R^2 : -0.3155
+    Samples: 20000
+
+[4] Restaurant Recommender — regression metrics
+    (predicted = composite_score, true = normalized rating)
+    MAE : 0.2556
+    MSE : 0.0875
+    RMSE: 0.2958
+    R^2 : -0.0888
+    Samples: 20000
+
+======================================================================
+Charts written to c:\Users\hp\OneDrive\Pictures\Documents\AI\AI assingment project\Smart Travel Planner\outputs/
+======================================================================
